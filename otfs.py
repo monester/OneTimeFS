@@ -11,6 +11,7 @@ fuse.fuse_python_api = (0, 2)
 
 config = {}
 
+
 class FsStat(fuse.Stat):
 
     def __init__(self):
@@ -198,7 +199,6 @@ def main():
     """main() function of OneTimeFS"""
     global config
     logging.basicConfig(filename='myapp.log', level=logging.INFO)
-    # logging.INFO("TEST INIT")
     server = OneTimeFS(version="%prog " + fuse.__version__,
                        dash_s_do='setsingle')
     with open("config.yaml") as f:
