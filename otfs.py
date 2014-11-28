@@ -194,6 +194,18 @@ class OneTimeFS(fuse.Fuse):
         """update date and time"""
         return 0
 
+    @log
+    def fsync(self, path, isfsyncfile):
+        return 0
+
+    @log
+    def rename(self, pathfrom, pathto):
+        filename_from, paths = self.get_filename(path)
+        filename_to, paths = self.get_filename(path)
+        self.files[filename_to] = self.files[filename_from]
+        del self.files[filename_from]
+        return 0
+
 
 def main():
     """main() function of OneTimeFS"""
